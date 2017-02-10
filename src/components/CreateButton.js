@@ -4,7 +4,11 @@ module.exports = React.createClass({
   displayName: 'CreateButton',
 
   onClick: function() {
-    console.log('Create tweet!');
+    lore.dialog.show(function() {
+      return (
+        <h1>Dialog Placeholder</h1>
+      );
+    });
   },
 
   render: function() {
