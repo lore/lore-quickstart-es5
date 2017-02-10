@@ -55,6 +55,14 @@ module.exports = lore.connect(function(getState, props) {
         )
       }
 
+      if (user.state === PayloadStates.ERROR_FETCHING) {
+        return (
+          <h1 className="loading-text">
+            Unauthorized
+          </h1>
+        )
+      }
+
       return (
         <div>
           {React.cloneElement(this.props.children)}

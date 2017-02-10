@@ -3,6 +3,7 @@
  *
  * This file is where you define overrides for the default collection behaviors.
  */
+var auth = require('../src/utils/auth');
 
 module.exports = {
 
@@ -69,9 +70,11 @@ module.exports = {
      * }
      */
 
-    // headers: function() {
-    //   return {};
-    // },
+    headers: function() {
+      return {
+        Authorization: 'Bearer ' + auth.getToken()
+      };
+    },
 
 
     /****************************************************************************
