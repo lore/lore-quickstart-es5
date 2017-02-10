@@ -4,24 +4,12 @@ var Router = require('react-router');
 module.exports = React.createClass({
   displayName: 'Profile',
 
-  propTypes: {
+  contextTypes: {
     user: React.PropTypes.object.isRequired
   },
 
-  getDefaultProps: function() {
-    return {
-      user: {
-        id: 1,
-        data: {
-          nickname: 'marle',
-          avatar: 'https://cloud.githubusercontent.com/assets/2637399/19027074/a37105c0-88e1-11e6-9645-3e1af37671f7.png'
-        }
-      }
-    }
-  },
-
   render: function() {
-    var user = this.props.user;
+    var user = this.context.user;
 
     return (
       <div className="card profile">

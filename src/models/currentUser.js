@@ -14,7 +14,7 @@ module.exports = {
    * and casingStyle for that model.
    */
 
-  endpoint: 'currentUser',
+  endpoint: 'user',
 
   properties: {
 

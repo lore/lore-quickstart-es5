@@ -15,25 +15,25 @@ require('../../assets/css/main.css');
 
 module.exports = lore.connect(function(getState, props) {
   return {
-    // user: getState('currentUser')
+    user: getState('currentUser')
   };
 }, { subscribe: true })(
   React.createClass({
     displayName: 'Master',
 
-    // propTypes: {
-    //   user: React.PropTypes.object.isRequired
-    // },
+    propTypes: {
+      user: React.PropTypes.object.isRequired
+    },
 
-    // childContextTypes: {
-    //   user: React.PropTypes.object
-    // },
+    childContextTypes: {
+      user: React.PropTypes.object
+    },
 
-    // getChildContext: function() {
-    //   return {
-    //     user: this.props.user
-    //   };
-    // },
+    getChildContext: function() {
+      return {
+        user: this.props.user
+      };
+    },
 
     componentDidMount: function() {
       // If you want to play with the router through the browser's dev console then
@@ -45,15 +45,15 @@ module.exports = lore.connect(function(getState, props) {
     },
 
     render: function() {
-      // var user = this.props.user;
+      var user = this.props.user;
 
-      // if (user.state === PayloadStates.FETCHING) {
-      //   return (
-      //     <h1 className="loading-text">
-      //       Loading...
-      //     </h1>
-      //   )
-      // }
+      if (user.state === PayloadStates.FETCHING) {
+        return (
+          <h1 className="loading-text">
+            Loading...
+          </h1>
+        )
+      }
 
       return (
         <div>
