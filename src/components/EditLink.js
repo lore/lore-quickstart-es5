@@ -1,6 +1,7 @@
 var React = require('react');
+var UserCanEditTweet = require('../decorators/UserCanEditTweet');
 
-module.exports = React.createClass({
+module.exports = UserCanEditTweet(React.createClass({
   displayName: 'EditLink',
 
   propTypes: {
@@ -30,4 +31,4 @@ module.exports = React.createClass({
     );
   }
 
-});
+}));
