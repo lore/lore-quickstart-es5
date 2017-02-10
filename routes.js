@@ -16,10 +16,12 @@ var Master = require('./src/components/Master');
 var Layout = require('./src/components/Layout');
 var Feed = require('./src/components/Feed');
 var Login = require('./src/components/Login');
+var Logout = require('./src/components/Logout');
 
 module.exports = (
   <Route>
     <Route path="/login" component={Login} />
+    <Route path="/logout" component={Logout} />
 
     <Route component={UserIsAuthenticated(Master)}>
       <Route path="/" component={Layout}>

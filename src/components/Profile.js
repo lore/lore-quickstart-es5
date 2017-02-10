@@ -1,4 +1,5 @@
 var React = require('react');
+var Router = require('react-router');
 
 module.exports = React.createClass({
   displayName: 'Profile',
@@ -39,9 +40,9 @@ module.exports = React.createClass({
               <li>Delete your own tweets</li>
             </ul>
           </div>
-          <button className="btn btn-primary">
+          <Router.Link className="btn btn-primary" to="/logout">
             Logout
-          </button>
+          </Router.Link>
         </div>
       </div>
     );
