@@ -23,6 +23,7 @@ lore.summon({
     connections: require('lore-hook-connections'),
     connect: require('lore-hook-connect'),
     dialog: require('lore-hook-dialog'),
+    dialogs: require('lore-hook-dialogs-bootstrap'),
     models: require('lore-hook-models'),
     reducers: require('lore-hook-reducers'),
     redux: _.extend(require('lore-hook-redux'), {
