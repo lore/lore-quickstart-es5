@@ -4,10 +4,17 @@ module.exports = React.createClass({
   displayName: 'CreateButton',
 
   onClick: function() {
+    function createTweet(params) {
+      lore.actions.tweet.create(_.extend(params, {
+        userId: 1,
+        createdAt: new Date().toISOString()
+      }));
+    }
+
     lore.dialog.show(function() {
-      return (
-        <h1>Dialog Placeholder</h1>
-      );
+      return lore.dialogs.tweet.create({
+        onSubmit: createTweet
+      });
     });
   },
 

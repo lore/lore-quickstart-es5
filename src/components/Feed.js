@@ -16,7 +16,7 @@ React.createClass({
 
   renderTweet: function(tweet) {
     return (
-      <Tweet key={tweet.id} tweet={tweet} />
+      <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
     );
   },
 
