@@ -1,4 +1,5 @@
 var React = require('react');
+var Tweet = require('./Tweet');
 
 module.exports = React.createClass({
   displayName: 'Feed',
@@ -30,9 +31,7 @@ module.exports = React.createClass({
 
   renderTweet: function(tweet) {
     return (
-      <li key={tweet.id}>
-        {tweet.data.text}
-      </li>
+      <Tweet key={tweet.id} tweet={tweet} />
     );
   },
 
