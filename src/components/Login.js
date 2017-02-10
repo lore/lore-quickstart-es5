@@ -1,5 +1,6 @@
 var React = require('react');
 var Auth0Lock = require('auth0-lock').default;
+var auth = require('../utils/auth');
 
 module.exports = React.createClass({
   displayName: 'Login',
@@ -7,6 +8,10 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this.lock = this.getLock();
     this.showLogin();
+  },
+
+  componentWillUnmount: function() {
+    this.lock.hide();
   },
 
   getLock: function(){
@@ -25,7 +30,8 @@ module.exports = React.createClass({
   },
 
   onAuthentication: function(authResult) {
-    // save user token to localStorage
+    auth.saveToken(authResult.idToken);
+    this.props.router.push('/');
   },
 
   showLogin: function(){
