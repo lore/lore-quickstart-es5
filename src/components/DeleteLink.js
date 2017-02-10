@@ -1,6 +1,7 @@
 var React = require('react');
+var UserCanDeleteTweet = require('../decorators/UserCanDeleteTweet');
 
-module.exports = React.createClass({
+module.exports = UserCanDeleteTweet(React.createClass({
   displayName: 'DeleteLink',
 
   propTypes: {
@@ -30,4 +31,4 @@ module.exports = React.createClass({
     );
   }
 
-});
+}));
