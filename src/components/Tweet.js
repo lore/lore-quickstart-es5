@@ -1,5 +1,6 @@
 var React = require('react');
 var moment = require('moment');
+var EditLink = require('./EditLink');
 
 module.exports = lore.connect(function(getState, props){
   var tweet = props.tweet;
@@ -40,6 +41,9 @@ React.createClass({
           <p className="list-group-item-text text">
             {tweet.data.text}
           </p>
+          <div>
+            <EditLink tweet={tweet} />
+          </div>
         </div>
       </li>
     );
