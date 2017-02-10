@@ -14,6 +14,7 @@
 
 var React = require('react');
 var AuthenticationGenerator = require('lore-auth').AuthenticationGenerator;
+var auth = require('../utils/auth');
 
 module.exports = AuthenticationGenerator({
   wrapperDisplayName: 'UserIsAuthenticated',
@@ -23,6 +24,6 @@ module.exports = AuthenticationGenerator({
   // redirectQueryParamName: 'redirect',
 
   isAuthenticated: function () {
-    return true;
+    return auth.hasToken();
   }
 });
