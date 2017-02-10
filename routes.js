@@ -17,6 +17,7 @@ var Layout = require('./src/components/Layout');
 var Feed = require('./src/components/Feed');
 var Login = require('./src/components/Login');
 var Logout = require('./src/components/Logout');
+var UserTweets = require('./src/components/UserTweets');
 
 module.exports = (
   <Route>
@@ -26,6 +27,7 @@ module.exports = (
     <Route component={UserIsAuthenticated(Master)}>
       <Route path="/" component={Layout}>
         <IndexRoute component={Feed} />
+        <Route path="users/:userId" component={UserTweets} />
       </Route>
     </Route>
   </Route>
