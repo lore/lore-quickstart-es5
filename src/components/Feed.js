@@ -2,6 +2,8 @@ var React = require('react');
 var Tweet = require('./Tweet');
 var PayloadStates = require('../constants/PayloadStates');
 var Router = require('react-router');
+var InfiniteScrolling = require('../decorators/InfiniteScrolling');
+var LoadMoreButton = require('./LoadMoreButton');
 
 module.exports = lore.connect(function(getState, props){
   return {
@@ -12,11 +14,13 @@ module.exports = lore.connect(function(getState, props){
     })
   }
 })(
+InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
 React.createClass({
   displayName: 'Feed',
 
   propTypes: {
-    tweets: React.PropTypes.object.isRequired
+    pages: React.PropTypes.array.isRequired,
+    onLoadMore: React.PropTypes.func.isRequired
   },
 
   renderTweet: function(tweet) {
@@ -25,35 +29,25 @@ React.createClass({
     );
   },
 
-  renderPaginationLink: function(page, currentPage) {
-    return (
-      <li key={page} className={currentPage === String(page) ? 'active' : ''}>
-        <Router.Link to={{ pathname: '/', query: { page: page } }}>
-          {page}
-        </Router.Link>
-      </li>
-    );
-  },
-
   render: function() {
-    var tweets = this.props.tweets;
-    var currentPage = tweets.query.pagination.page;
-    var paginationLinks = [];
+    var pages = this.props.pages;
+    var numberOfPages = pages.length;
+    var firstPage = pages[0];
+    var lastPage = pages[pages.length - 1];
 
-    if (tweets.state === PayloadStates.FETCHING) {
+    // if we only have one page, and it's fetching, then it's the initial
+    // page load so let the user know we're loading the data
+    if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
       return (
         <h1 className="loading-text">
           Loading...
         </h1>
-      )
+      );
     }
 
-    // calculate the number of pagination links from our metadata, then
-    // generate an array of pagination links
-    var numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-    for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
-      paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
-    }
+    var tweetListItems = _.flatten(pages.map(function(tweets) {
+      return tweets.data.map(this.renderTweet);
+    }.bind(this)));
 
     return (
       <div className="feed">
@@ -61,15 +55,15 @@ React.createClass({
           Feed
         </h2>
         <ul className="media-list tweets">
-          {tweets.data.map(this.renderTweet)}
+          {tweetListItems}
         </ul>
-        <nav>
-          <ul className="pagination">
-            {paginationLinks}
-          </ul>
-        </nav>
+        <LoadMoreButton
+          lastPage={lastPage}
+          onLoadMore={this.props.onLoadMore}
+          nextPageMetaField="nextPage" />
       </div>
     );
   }
 })
+)
 );
