@@ -15,11 +15,16 @@ var UserIsAuthenticated = require('./src/decorators/UserIsAuthenticated');
 var Master = require('./src/components/Master');
 var Layout = require('./src/components/Layout');
 var Feed = require('./src/components/Feed');
+var Login = require('./src/components/Login');
 
 module.exports = (
-  <Route component={UserIsAuthenticated(Master)}>
-    <Route path="/" component={Layout}>
-      <IndexRoute component={Feed} />
+  <Route>
+    <Route path="/login" component={Login} />
+
+    <Route component={UserIsAuthenticated(Master)}>
+      <Route path="/" component={Layout}>
+        <IndexRoute component={Feed} />
+      </Route>
     </Route>
   </Route>
 );
