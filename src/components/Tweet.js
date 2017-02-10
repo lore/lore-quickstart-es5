@@ -5,11 +5,26 @@ module.exports = React.createClass({
   displayName: 'Tweet',
 
   propTypes: {
-    tweet: React.PropTypes.object.isRequired
+    tweet: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object.isRequired
+  },
+
+  getDefaultProps: function() {
+    return {
+      user: {
+        id: 1,
+        data: {
+          id: 1,
+          nickname: "lucca",
+          avatar: "https://cloud.githubusercontent.com/assets/2637399/19027072/a36f0c7a-88e1-11e6-931e-7f67fe01367b.png"
+        }
+      }
+    }
   },
 
   render: function() {
     var tweet = this.props.tweet;
+    var user = this.props.user;
     var timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
     return (
@@ -17,11 +32,11 @@ module.exports = React.createClass({
         <div className="image-container">
           <img
             className="img-circle avatar"
-            src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
+            src={user.data.avatar} />
         </div>
         <div className="content-container">
           <h4 className="list-group-item-heading title">
-            Nickname
+            {user.data.nickname}
           </h4>
           <h4 className="list-group-item-heading timestamp">
             {'- ' + timestamp}
