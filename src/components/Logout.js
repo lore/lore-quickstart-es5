@@ -1,5 +1,6 @@
 var React = require('react');
 var auth = require('../utils/auth');
+var ActionTypes = require('lore-utils').ActionTypes;
 
 module.exports = React.createClass({
   displayName: 'Logout',
@@ -10,6 +11,10 @@ module.exports = React.createClass({
 
   componentDidMount: function(){
     auth.deleteToken();
+    lore.store.dispatch({
+      type: ActionTypes.RESET_STORE,
+      payload: {}
+    });
     this.props.router.push('/');
   },
 
