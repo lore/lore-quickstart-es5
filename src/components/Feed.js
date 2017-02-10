@@ -4,6 +4,7 @@ var PayloadStates = require('../constants/PayloadStates');
 var Router = require('react-router');
 var InfiniteScrolling = require('../decorators/InfiniteScrolling');
 var LoadMoreButton = require('./LoadMoreButton');
+var _ = require('lodash');
 
 module.exports = lore.connect(function(getState, props){
   return {
