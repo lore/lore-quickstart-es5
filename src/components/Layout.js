@@ -7,6 +7,7 @@
 var React = require('react');
 var Header = require('./Header');
 var Profile = require('./Profile');
+var Filter = require('./Filter');
 
 module.exports = React.createClass({
   displayName: 'Layout',
@@ -19,6 +20,7 @@ module.exports = React.createClass({
           <div className="row">
             <div className="col-md-3">
               <Profile />
+              <Filter />
             </div>
             <div className="col-md-offset-1 col-md-6">
               {React.cloneElement(this.props.children)}
