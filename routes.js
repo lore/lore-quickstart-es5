@@ -1,5 +1,6 @@
 var React = require('react');
 var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
 
 /**
  * Wrapping the Master component with this decorator provides an easy way
@@ -13,9 +14,12 @@ var UserIsAuthenticated = require('./src/decorators/UserIsAuthenticated');
  */
 var Master = require('./src/components/Master');
 var Layout = require('./src/components/Layout');
+var Feed = require('./src/components/Feed');
 
 module.exports = (
   <Route component={UserIsAuthenticated(Master)}>
-    <Route path="/" component={Layout} />
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Feed} />
+    </Route>
   </Route>
 );

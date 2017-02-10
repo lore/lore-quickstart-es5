@@ -17,7 +17,7 @@ module.exports = React.createClass({
         <div className="container">
           <div className="row">
             <div className="col-md-offset-3 col-md-6">
-              {/* Feed will go here */}
+              {React.cloneElement(this.props.children)}
             </div>
           </div>
         </div>
